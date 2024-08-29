@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Counselling Clone</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Mindgroom Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Blogs</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">For Students</a>
+                    <div class="dropdown-content">
+                        <a href="#" class="dropdown-item" data-action="find-counsellor">Find a Career Counsellor</a>
+                        <a href="#" class="dropdown-item" data-action="career-test">Take a Career Test</a>
+                        <a href="#">Knowledge Bank</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">For Educational Institutes</a>
+                    <div class="dropdown-content">
+                        <a href="#">Career Seminar / Career Talk</a>
+                        <a href="#">1 - on - 1 Career Counselling</a>
+                        <a href="#">Customized White Labelled Assessments</a>
+                        <a href="#">Career Counselling Cell</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Profile Building</a>
+                    <div class="dropdown-content">
+                        <a href="#">CV Building</a>
+                        <a href="#">Interview Preparation</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Be a Counselor</a>
+                    <div class="dropdown-content">
+                        <a href="#">Counselor Training Program</a>
+                        <a href="#">Join as a Counselor</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="contact-info">
+                <span>+91-9319336222</span>
+                <button id="login-btn">FREE LOGIN</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Find Career Counsellors Near You</h1>
+                <p>Get Career Counselling From Best Career Counsellors Near You</p>
+                <div class="search-bar">
+                    <select>
+                        <option>Career Counsellor For</option>
+                        <option>Students</option>
+                        <option>Graduates</option>
+                        <option>Post-Graduation</option>
+                    </select>
+                    <select>
+                        <option>Select the Location</option>
+                        <option>Delhi</option>
+                        <option>Mumbai</option>
+                        <option>Bangalore</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="feature-item">
+                <h2>Find Career Counsellor</h2>
+                <p>Find the most experienced and well-trained career counsellor in your locality.</p>
+            </div>
+            <div class="feature-item">
+                <h2>Comprehensive Career Test</h2>
+                <p>We provide a comprehensive career test based on both Inborn and Acquired Intelligence.</p>
+            </div>
+            <div class="feature-item">
+                <h2>Knowledge Bank</h2>
+                <p>A vast knowledge bank on various career opportunities, growth trajectory, and more.</p>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services">
+            <div class="service-item">
+                <h3>Career Seminar / Career Talk</h3>
+                <p>We provide group counselling sessions in schools, colleges, and corporates.</p>
+            </div>
+            <div class="service-item">
+                <h3>1-on-1 Career Counselling</h3>
+                <p>Get customized solutions through face-to-face or online mode.</p>
+            </div>
+            <div class="service-item">
+                <h3>Customized White Labelled Assessments</h3>
+                <p>Offer white labelled career assessments with your own brand and logo.</p>
+            </div>
+            <div class="service-item">
+                <h3>Career Counselling Cell</h3>
+                <p>We set up career counselling cells in schools and colleges.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Mindgroom. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Modal for Login -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Please log in to continue.</p>
+            <button>Log In</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginBtn = document.getElementById('login-btn');
+            const modal = document.getElementById('login-modal');
+            const closeModal = document.querySelector('.modal-content .close');
+
+            document.querySelectorAll('.dropdown-content a').forEach(item => {
+                item.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    if (!userIsLoggedIn()) {
+                        modal.style.display = 'flex';
+                    }
+                });
+            });
+
+            loginBtn.addEventListener('click', function() {
+                if (!userIsLoggedIn()) {
+                    modal.style.display = 'flex';
+                }
+            });
+
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            function userIsLoggedIn() {
+                // Replace this with actual logic for checking if the user is logged in
+                return false;
+            }
+        });
+    </script>
+</body>
+</html>
