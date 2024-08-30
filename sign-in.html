@@ -32,25 +32,64 @@
                     <option value="Postgraduate">Postgraduate</option>
                 </select>
 
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <small id="password-strength"></small>
+
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+
                 <button type="submit">Sign In</button>
             </form>
             <div id="thank-you-message" style="display: none;">
                 <h2>Thank You!</h2>
-                <p>Your details have been submitted successfully.</p>
+                <p>Your profile has been created successfully.</p>
             </div>
         </section>
     </main>
 
     <script>
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        const passwordStrengthText = document.getElementById('password-strength');
+
+        passwordInput.addEventListener('input', () => {
+            const password = passwordInput.value;
+            let strength = 'Weak';
+            if (password.length >= 8 && /[A-Z]/.test(password) && /[a-z]/.test(password) && /[0-9]/.test(password) && /[^A-Za-z0-9]/.test(password)) {
+                strength = 'Strong';
+            } else if (password.length >= 6) {
+                strength = 'Medium';
+            }
+            passwordStrengthText.textContent = `Password Strength: ${strength}`;
+        });
+
         document.getElementById('sign-in-form').addEventListener('submit', function(event) {
             event.preventDefault();
+
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
 
             const formData = new FormData(this);
             const data = {
                 name: formData.get('name'),
                 email: formData.get('email'),
                 phone: formData.get('phone'),
-                education: formData.get('education')
+                education: formData.get('education'),
+                address: formData.get('address'),
+                dob: formData.get('dob'),
+                password: password
             };
 
             fetch('/submit-form', {
